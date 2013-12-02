@@ -1,5 +1,0 @@
-
-version : 0.1.2
-name : web framework
-lastUpdate : 2010-10-22
-author : Hyeon-beom, Pyeon
