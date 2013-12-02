@@ -1,9 +1,4 @@
-﻿-- ====================================================================
--- Author:	<    >
--- Create date: < 2013.01.01 >
--- Description:	<  캐릭터 목록을 가져오는 것인데... 디비서버가 병렬처리되면 웹 서버에서 각 서버에 검색을 날려 합쳐야한다. 
---                 GameDB는 철저히 개인화된 접근만 허용해야한다.  그렇지 않으면 이런 문제가 발생한다.  >
--- ====================================================================
+﻿
 CREATE PROCEDURE [dbo].[proc_GetListCharacter]
 	 @frk_n4ErrorCode	int				=NULL	OUTPUT,
 	 @frk_strErrorText	nvarchar(100)	=NULL	OUTPUT,
