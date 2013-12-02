@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 29
+/svn/!svn/ver/50/trunk/js/rpg
+END
+service.nxSpell.js
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/42/trunk/js/rpg/service.nxSpell.js
+END
+service.nxPlayUnit.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/50/trunk/js/rpg/service.nxPlayUnit.js
+END
+service.nxWarrior.js
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/50/trunk/js/rpg/service.nxWarrior.js
+END
+service.nxGround_hyungno.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/42/trunk/js/rpg/service.nxGround_hyungno.js
+END
+service.nxGameEffect.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/33/trunk/js/rpg/service.nxGameEffect.js
+END
+service.nxGameGround.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/54/trunk/js/rpg/service.nxGameGround.js
+END
+service.nxNpcHyungno.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/54/trunk/js/rpg/service.nxNpcHyungno.js
+END
+service.nxGameItem.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/54/trunk/js/rpg/service.nxGameItem.js
+END
+service.nxUnitAI.js
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/48/trunk/js/rpg/service.nxUnitAI.js
+END
+service.nxGameMain.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/54/trunk/js/rpg/service.nxGameMain.js
+END
+service.nxGameGUI.js
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/54/trunk/js/rpg/service.nxGameGUI.js
+END
+service.nxUnitSkill.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/54/trunk/js/rpg/service.nxUnitSkill.js
+END
+service.nxGameEnvironment.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/54/trunk/js/rpg/service.nxGameEnvironment.js
+END
