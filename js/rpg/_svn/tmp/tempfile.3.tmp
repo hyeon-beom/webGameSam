@@ -1,0 +1,206 @@
+
+function nxUnitSkill(playUnit)
+{
+	if(!playUnit)
+		return ;
+		
+	this.playUnit	= playUnit;
+	this.imgBG		= playUnit.parent;
+	
+	this.play=function()
+	{
+		this.playEffectSound();
+		this.playUnit.setMotion(nxUnitMotion.NormalAttack);
+		this.doSpell();
+		this.move();		
+		this.giveDamage();
+	}
+	this.getTargetUnits=function()
+	{
+		var rect = this.getRectAttackRegion();
+		var units = rect.getUnitsInRect();
+		return units;
+	}
+	this.giveDamage=function()
+	{
+		var units = this.getTargetUnits();
+		for(var i=0;i<units.length;i++)
+		{
+			if(units[i]!=this.playUnit && units[i].isEnemy(this.playUnit))
+			{
+				units[i].receiveDamage(this.playUnit.getPower());
+				if(units[i].n1MotionDirection!=this.playUnit.n1MotionDirection)
+				{
+					units[i].doLater("doWound(true)", 100);
+					units[i].slip(false,10,50);
+				}
+				else
+				{
+					units[i].doLater("doWound(false)", 100);
+					units[i].slip(true,10,50);
+				}
+					
+			}
+		}
+	}
+	this.doSpell=function(){}
+	this.getRectAttackRegion=function()
+	{
+		return this.playUnit.getAttackRect();
+	}
+	this.move=function()
+	{
+		//if(this.playUnit.isMyUnit)
+		//	this.playUnit.slip(true,10,50);
+	}
+	this.geteffectSound=function()
+	{
+		return "attack1.mp3";
+	}
+	this.playEffectSound=function()
+	{
+		var sndFile = this.geteffectSound();
+		if(sndFile!=null)
+		{
+			var np = new NxPlayer(sndFile);
+			np.play();
+			np=null;
+		}
+	}
+	
+}
+
+function nxSkillNormalAttack(playUnit)
+{
+	nxUnitSkill.apply(this, arguments);
+		
+
+}
+nxUnitSkill.prototype = new nxUnitSkill();
+nxUnitSkill.prototype.constructor = nxUnitSkill;
+
+function nxSkillDashAttack(playUnit)
+{
+	nxUnitSkill.apply(this, arguments);
+		
+	this.move=function()
+	{
+		this.playUnit.slip(true,150,50);
+	}
+}
+nxSkillDashAttack.prototype = new nxUnitSkill();
+nxSkillDashAttack.prototype.constructor = nxSkillDashAttack;
+
+
+var n4BoltIndex		= 0;
+function nxSpellEnergyBolt(playUnit)
+{
+	nxUnitSkill.apply(this, arguments);
+		
+	this.move=function(){return null;}
+	this.geteffectSound=function()
+	{
+		return "magicEnergyBolt.mp3";
+	}
+	this.giveDamage=function(){}
+	
+	this.n4ThrowDistance	= 400;
+	this.n4Sight			= 400;
+	
+	this.doSpell=function()
+	{
+		n4BoltIndex++
+		this.bolt = this.getBoltObject();
+		this.bolt.n4Damage = 20;
+		var rectBoltFly = this.getBoltRect();
+		this.bolt.fire(rectBoltFly);
+	}
+	this.getBoltObject=function()
+	{
+		return new nxBoltEnergy(this.playUnit.id + '_bolt_' + n4BoltIndex, this.playUnit);
+	}
+	this.getBoltRect=function()
+	{
+		if( this.playUnit.n1MotionDirection	== nxUnitMotion.DirectionBase )
+		{
+			rectBoltFly = new nxRectangle(
+											this.playUnit.getPosition().x+40
+											, this.playUnit.getPosition().y-70
+											, this.n4ThrowDistance
+											, 50
+											)
+		}
+		else
+		{
+			rectBoltFly = new nxRectangle(
+											this.playUnit.getPosition().x-this.n4ThrowDistance-40
+											, this.playUnit.getPosition().y-70
+											, this.n4ThrowDistance
+											, 50
+											)
+		}
+		return rectBoltFly;
+	}
+}
+nxSpellEnergyBolt.prototype = new nxUnitSkill();
+nxSpellEnergyBolt.prototype.constructor = nxSpellEnergyBolt;
+function nxSpellDagger(playUnit)
+{
+	nxSpellEnergyBolt.apply(this, arguments);
+		
+	this.move=function(){return null;}
+	this.geteffectSound=function()
+	{
+		return "throwDagger1.mp3";
+	}
+	this.getBoltObject=function()
+	{
+		return new nxBolt(this.playUnit.id + '_bolt_' + n4BoltIndex, this.playUnit);
+	}
+}
+nxSpellDagger.prototype = new nxUnitSkill();
+nxSpellDagger.prototype.constructor = nxSpellDagger;
+
+
+function nxSpellLightning(playUnit)
+{
+	nxSpellEnergyBolt.apply(this, arguments);
+		
+	this.move=function(){return null;}
+	this.geteffectSound=function()
+	{
+		return "lightning.mp3";
+	}
+	this.getBoltObject=function()
+	{
+		return new nxDropSpell(this.playUnit.id + '_bolt_' + n4BoltIndex, this.playUnit);
+	}
+}
+nxSpellDagger.prototype = new nxUnitSkill();
+nxSpellDagger.prototype.constructor = nxSpellDagger;
+
+
+
+function nxSkillBackStep(playUnit)
+{
+	nxUnitSkill.apply(this, arguments);
+		
+	this.move=function()
+	{
+		this.playUnit.slip(false,50,50);
+	}
+	
+	this.play=function()
+	{
+		this.playUnit.setMotion(nxUnitMotion.Jump);
+		this.move();		
+		//this.giveDamage();
+	}
+	this.move=function()
+	{
+		this.playUnit.slip(false,100,50);
+	}
+}
+nxSkillBackStep.prototype = new nxUnitSkill();
+nxSkillBackStep.prototype.constructor = nxSkillBackStep;
+
